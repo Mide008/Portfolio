@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clarity over complexity. Always. Olumide Sajowa — Design & Product Delivery.">
+    <title>About — Olumide Sajowa</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Updated Background: Warm off-white with linen/canvas texture + architectural accent */
+        body {
+            background-color: #FAF9F7;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 40px 40px, 40px 40px, 100px 100px;
+            color: #1E1E1E;
+            --primary: #2A4B7C;
+            --secondary: #5F6B7A;
+            --accent: #8B5F4C;
+            --dark: #1E1E1E;
+            --light: #FAF9F7;
+            --gray: #5B5B5B;
+            --border: rgba(0,0,0,0.08);
+            --gradient: linear-gradient(135deg, #2A4B7C 0%, #4A6A8C 50%, #8B5F4C 100%);
+        }
+
+        .nav-backdrop {
+            background: rgba(250, 249, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .nav.scrolled .nav-backdrop {
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        }
+
+        .nav-link {
+            color: var(--gray);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--dark);
+        }
+
+        .nav-logo {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            color: var(--dark);
+        }
+
+        .floating-orb,
+        .noise-overlay,
+        .hero-visual,
+        .orb-1, .orb-2, .orb-3 {
+            display: none;
+        }
+
+        .page-transition {
+            background: #FAF9F7;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: var(--gray);
+        }
+
+        .footer-content p,
+        .footer-links a {
+            color: var(--gray);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .about-title,
+        .section-title,
+        .cta-title,
+        .philosophy-title,
+        .value-title,
+        .expertise-heading {
+            color: var(--dark);
+        }
+
+        .about-text,
+        .philosophy-text,
+        .value-text,
+        .expertise-list li,
+        .cta-text {
+            color: var(--gray);
+        }
+
+        .about-label {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .philosophy-section {
+            background: rgba(42, 75, 124, 0.02);
+        }
+
+        .philosophy-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.04);
+            backdrop-filter: blur(10px);
+        }
+
+        .philosophy-card:hover {
+            background: white;
+            border-color: rgba(42, 75, 124, 0.15);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.02);
+        }
+
+        .philosophy-icon {
+            color: var(--primary);
+        }
+
+        .values-section {
+            background: white;
+        }
+
+        .value-item {
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .value-number {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .expertise-list li {
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .expertise-list li:hover {
+            color: var(--dark);
+            padding-left: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--dark);
+            color: white;
+            box-shadow: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0,0,0,0.02);
+            border-color: var(--dark);
+        }
+
+        .cta-section {
+            background: rgba(42, 75, 124, 0.02);
+            border-top: 1px solid rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .about-image img {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .about-image-glow {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                background: rgba(250, 249, 247, 0.98);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                border-left: 1px solid rgba(0,0,0,0.04);
+            }
+            
+            .nav-toggle svg {
+                stroke: var(--dark);
+            }
+            
+            .philosophy-card {
+                padding: 2rem;
+            }
+            
+            .value-item {
+                padding: 2rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-container {
+                gap: 2rem;
+            }
+            
+            .philosophy-card {
+                padding: 1.75rem;
+            }
+        }
+
+        /* Process block styling */
+        .process-block {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .process-item {
+            padding: 1.5rem;
+            background: rgba(42, 75, 124, 0.02);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .process-item:hover {
+            background: rgba(42, 75, 124, 0.04);
+        }
+
+        .process-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .process-item p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .fit-badge {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-right: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition"></div>
+
+    <!-- Hunter.io Style Navigation (preserved) -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-backdrop"></div>
+            <div class="nav-content">
+                <a href="index.html" class="nav-logo" id="logoContainer">
+                    <div class="logo-orb">
+                        <img src="./images/logo/OS logo 1.png" alt="OS Logo" class="logo-image">
+                        <div class="logo-glow"></div>
+                        <div class="logo-sparkle"></div>
+                    </div>
+                </a>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link">Work</a>
+                    <a href="about.html" class="nav-link active">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- About Hero with Image (preserved) -->
+        <section class="about-hero">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop" alt="Olumide Sajowa">
+                </div>
+                <div class="about-content">
+                    <span class="about-label">Design & Product Delivery</span>
+                    <h1 class="about-title">
+                        Clarity over complexity.<br>Always.
+                    </h1>
+                    <div style="margin-bottom: 2rem;">
+                        <p class="about-text">
+                            After two decades working across print, branding, and digital products, I focus on one thing: <strong>removing unnecessary complexity</strong> from brands and software so they work better for users and for teams.
+                        </p>
+                    </div>
+                    
+                    <!-- What I do (condensed) -->
+                    <div style="background: white; border: 1px solid rgba(0,0,0,0.04); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--dark);">What I do</h3>
+                        <p style="color: var(--gray); line-height: 1.7;">
+                            I partner with founders and teams to design and deliver complete digital products — from brand foundations and interfaces to fully functioning applications.
+                        </p>
+                        <p style="color: var(--dark); font-weight: 500; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.04);">
+                            No handoffs. No translation loss. Clear decisions and shipped work.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How I work (Process) - New -->
+        <section style="padding: 2rem 2rem 4rem;">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <h2 class="section-title" style="margin-bottom: 1rem;">How I work</h2>
+                
+                <div class="process-grid">
+                    <div class="process-item">
+                        <h4>Clarify</h4>
+                        <p>Strip problems down to what actually matters before anything is built.</p>
+                    </div>
+                    <div class="process-item">
+                        <h4>Structure</h4>
+                        <p>Shape systems—brand, interface, or product—so decisions become obvious, not debated.</p>
+                    </div>
+                    <div class="process-item">
+                        <h4>Build</h4>
+                        <p>Move directly into execution with intent and precision.</p>
+                    </div>
+                    <div class="process-item">
+                        <h4>Ship & Refine</h4>
+                        <p>Launch real products, then improve based on reality, not assumptions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perspective (Experience) - New -->
+        <section style="padding: 4rem 2rem; background: white; border-top: 1px solid rgba(0,0,0,0.04); border-bottom: 1px solid rgba(0,0,0,0.04);">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <span style="display: inline-block; padding: 0.35rem 1rem; background: rgba(42, 75, 124, 0.05); border: 1px solid rgba(42, 75, 124, 0.1); border-radius: 20px; font-size: 0.85rem; color: var(--primary); margin-bottom: 1.5rem;">
+                    Perspective
+                </span>
+                <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--dark); line-height: 1.3;">
+                    Experience across print, identity, product design, and web applications informs every decision.
+                </h2>
+                <p style="color: var(--gray); font-size: 1.1rem; line-height: 1.7;">
+                    The goal isn't novelty — it's work that lasts, scales, and stays clear as products grow.
+                </p>
+                <p style="color: var(--gray); margin-top: 1.5rem; font-weight: 500;">
+                    Built across multiple design disciplines over two decades.
+                </p>
+            </div>
+        </section>
+
+        <!-- Philosophy Section (preserved but lighter) -->
+        <section class="philosophy-section">
+            <div class="philosophy-container">
+                <h2 class="section-title">Design Philosophy</h2>
+                <div class="philosophy-grid">
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="philosophy-title">Systems Thinking</h3>
+                        <p class="philosophy-text">Every design decision ripples through the entire system. I approach problems holistically, considering how each element connects and influences the whole.</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="philosophy-title">Iterative Craft</h3>
+                        <p class="philosophy-text">Great design emerges through continuous refinement. I embrace iteration as a pathway to excellence, testing and improving until the solution feels inevitable.</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="philosophy-title">Human-Centered</h3>
+                        <p class="philosophy-text">Technology serves people, not the other way around. I prioritize understanding user needs, contexts, and behaviors to create truly empathetic solutions.</p>
+                    </div>
+                    <div class="philosophy-card">
+                        <div class="philosophy-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <h3 class="philosophy-title">Technical Excellence</h3>
+                        <p class="philosophy-text">Beautiful design must be buildable. I bridge the gap between vision and implementation, ensuring designs are both inspiring and technically sound.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Fit - New -->
+        <section style="padding: 5rem 2rem; background: white;">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Best fit</h2>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 3rem;">
+                    <span class="fit-badge">Founders building serious products</span>
+                    <span class="fit-badge">Teams tired of endless revisions</span>
+                    <span class="fit-badge">Brands that value clarity over decoration</span>
+                </div>
+                
+                <div style="text-align: center; padding: 3rem; background: rgba(42, 75, 124, 0.02); border-radius: 24px;">
+                    <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 1rem; color: var(--dark);">
+                        Bring clarity to your product.
+                    </h3>
+                    <div style="margin-top: 2rem;">
+                        <a href="contact.html" class="btn-primary" style="margin-right: 1rem;">Start a conversation</a>
+                        <a href="index.html" class="btn-secondary">View work</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise Section (preserved but condensed) -->
+        <section class="expertise-section" style="background: white; border-top: 1px solid rgba(0,0,0,0.04);">
+            <div class="expertise-container">
+                <h2 class="section-title">Capabilities</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-column">
+                        <h3 class="expertise-heading">Design</h3>
+                        <ul class="expertise-list">
+                            <li>Brand Identity & Strategy</li>
+                            <li>UI/UX Design</li>
+                            <li>Design Systems</li>
+                            <li>Motion & Interaction</li>
+                            <li>Typography & Layout</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-column">
+                        <h3 class="expertise-heading">Engineering</h3>
+                        <ul class="expertise-list">
+                            <li>Frontend Development</li>
+                            <li>Prototyping & Animation</li>
+                            <li>Design Tokens</li>
+                            <li>Performance Optimization</li>
+                            <li>Accessibility</li>
+                        </ul>
+                    </div>
+                    <div class="expertise-column">
+                        <h3 class="expertise-heading">Strategy</h3>
+                        <ul class="expertise-list">
+                            <li>Product Strategy</li>
+                            <li>User Research</li>
+                            <li>Design Leadership</li>
+                            <li>Workshop Facilitation</li>
+                            <li>Team Collaboration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 Olumide Sajowa. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/olumidesajowa" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://twitter.com/olumidesajowa" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

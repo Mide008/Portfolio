@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bring clarity to your product. Start a conversation with Olumide Sajowa.">
+    <title>Contact — Olumide Sajowa</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Updated Background: Warm off-white with linen/canvas texture + architectural accent */
+        body {
+            background-color: #FAF9F7;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 40px 40px, 40px 40px, 100px 100px;
+            color: #1E1E1E;
+            --primary: #2A4B7C;
+            --secondary: #5F6B7A;
+            --accent: #8B5F4C;
+            --dark: #1E1E1E;
+            --light: #FAF9F7;
+            --gray: #5B5B5B;
+            --border: rgba(0,0,0,0.08);
+            --gradient: linear-gradient(135deg, #2A4B7C 0%, #4A6A8C 50%, #8B5F4C 100%);
+        }
+
+        .nav-backdrop {
+            background: rgba(250, 249, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .nav.scrolled .nav-backdrop {
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        }
+
+        .nav-link {
+            color: var(--gray);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--dark);
+        }
+
+        .nav-logo {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            color: var(--dark);
+        }
+
+        .floating-orb,
+        .noise-overlay,
+        .hero-visual,
+        .orb-1, .orb-2, .orb-3 {
+            display: none;
+        }
+
+        .page-transition {
+            background: #FAF9F7;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            color: var(--gray);
+        }
+
+        .footer-content p,
+        .footer-links a {
+            color: var(--gray);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .contact-title,
+        .section-title,
+        .cta-title,
+        .modal-title {
+            color: var(--dark);
+        }
+
+        .contact-intro,
+        .section-subtitle,
+        .cta-text,
+        .method-link,
+        .form-label {
+            color: var(--gray);
+        }
+
+        .contact-method {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(255,255,255,0.9);
+            border-color: rgba(42, 75, 124, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        .method-icon {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.08);
+            color: var(--dark);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(42, 75, 124, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--dark);
+            color: white;
+            box-shadow: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0,0,0,0.02);
+            border-color: var(--dark);
+        }
+
+        .contact-label {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .cta-section {
+            background: rgba(42, 75, 124, 0.02);
+            border-top: 1px solid rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .value-number,
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-overlay {
+            background: rgba(250, 249, 247, 0.95);
+        }
+
+        .modal {
+            background: white;
+            box-shadow: -20px 0 40px rgba(0,0,0,0.02);
+        }
+
+        .modal-close {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--dark);
+        }
+
+        .modal-close:hover {
+            background: rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .team-tag {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .learnings-list li::before {
+            color: var(--primary);
+        }
+
+        .decision-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .decision-card:hover {
+            border-color: rgba(42, 75, 124, 0.2);
+        }
+
+        .decision-icon {
+            background: rgba(42, 75, 124, 0.05);
+            color: var(--primary);
+        }
+
+        .philosophy-card,
+        .value-item,
+        .expertise-list li {
+            color: var(--gray);
+        }
+
+        .work-overlay {
+            background: rgba(42, 75, 124, 0.95);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                background: rgba(250, 249, 247, 0.98);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                border-left: 1px solid rgba(0,0,0,0.04);
+            }
+            
+            .nav-toggle svg {
+                stroke: var(--dark);
+            }
+            
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+            
+            .contact-method {
+                padding: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-form {
+                padding: 1.75rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition"></div>
+
+    <!-- Hunter.io Style Navigation (preserved) -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-backdrop"></div>
+            <div class="nav-content">
+                <a href="index.html" class="nav-logo" id="logoContainer">
+                    <div class="logo-orb">
+                        <img src="./images/logo/OS logo 1.png" alt="OS Logo" class="logo-image">
+                        <div class="logo-glow"></div>
+                        <div class="logo-sparkle"></div>
+                    </div>
+                </a>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link">Work</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="contact-section">
+            <div class="contact-container">
+                <div class="contact-content">
+                    <span class="contact-label">Start a conversation</span>
+                    
+                    <h1 class="contact-title">
+                        Bring clarity to your product.
+                    </h1>
+                    
+                    <p class="contact-intro">
+                        If you're building or refining a digital product and need clear thinking, strong execution, and a finished outcome, this is the right place to start.
+                    </p>
+
+                    <div class="contact-methods">
+                        <!-- Direct Email Contact -->
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="method-content">
+                                <h3 class="method-title">Email</h3>
+                                <a href="mailto:hello@olumidesajowa.com" class="method-link">hello@olumidesajowa.com</a>
+                                <p style="font-size: 0.9rem; color: var(--gray); margin-top: 0.5rem;">
+                                    I read every message.<br>Expect a response within 2 business days.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Good Reasons Section (Integrated) -->
+                        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.04);">
+                            <h3 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--dark);">
+                                Good reasons to reach out
+                            </h3>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 0.5rem 0; color: var(--gray); display: flex; align-items: center; gap: 0.75rem;">
+                                    <span style="color: var(--primary);">—</span> 
+                                    Building or reworking a digital product
+                                </li>
+                                <li style="padding: 0.5rem 0; color: var(--gray); display: flex; align-items: center; gap: 0.75rem;">
+                                    <span style="color: var(--primary);">—</span> 
+                                    Clarifying a brand or interface system
+                                </li>
+                                <li style="padding: 0.5rem 0; color: var(--gray); display: flex; align-items: center; gap: 0.75rem;">
+                                    <span style="color: var(--primary);">—</span> 
+                                    Shipping something real, not just discussing it
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Limited Projects Signal -->
+                        <div style="margin-top: 2.5rem; padding: 1.25rem 1.5rem; background: rgba(42, 75, 124, 0.02); border-radius: 12px; border-left: 3px solid var(--primary);">
+                            <p style="font-size: 0.95rem; color: var(--dark); font-weight: 500;">
+                                Currently accepting a limited number of projects.
+                            </p>
+                        </div>
+
+                        <!-- LinkedIn & Twitter (preserved but de-emphasized) -->
+                        <div style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                            <a href="https://linkedin.com/in/olumidesajowa" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 0.5rem; color: var(--gray); text-decoration: none; font-size: 0.95rem; transition: color 0.2s ease;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://twitter.com/olumidesajowa" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 0.5rem; color: var(--gray); text-decoration: none; font-size: 0.95rem; transition: color 0.2s ease;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                                </svg>
+                                Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form (preserved but optional) -->
+                <div class="contact-form-wrapper">
+                    <div class="form-message success" id="successMessage" style="display: none;">
+                        Thank you for your message. I'll respond within 2 business days.
+                    </div>
+                    <div class="form-message error" id="errorMessage" style="display: none;">
+                        Something went wrong. Please email me directly at hello@olumidesajowa.com
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <h3 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--dark);">Send a message</h3>
+                        <p style="color: var(--gray); margin-bottom: 1.5rem; font-size: 0.95rem;">I read every message and reply within 2 days.</p>
+                        
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <input type="text" id="subject" name="subject" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" name="message" rows="5" class="form-textarea" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="submitButton" style="width: 100%;">
+                            <span id="buttonText">Send message</span>
+                            <span id="buttonSpinner" class="loading-spinner" style="display: none;"></span>
+                        </button>
+                        
+                        <p style="font-size: 0.8rem; color: var(--gray); text-align: center; margin-top: 1rem;">
+                            Your information is private and never shared.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-container">
+                <h2 class="cta-title">Olumide Sajowa — Design & Product Delivery</h2>
+                <p class="cta-text">
+                    From idea to live product. Done right.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="index.html" class="btn-secondary" style="margin-right: 1rem;">View work</a>
+                    <a href="mailto:hello@olumidesajowa.com" class="btn-primary">Email directly</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 Olumide Sajowa. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/olumidesajowa" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://twitter.com/olumidesajowa" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

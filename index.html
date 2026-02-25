@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Olumide Sajowa - Design Engineer. From idea to live product. Done right.">
+    <meta name="keywords" content="Design Engineer, UI/UX Designer, Product Designer, Graphics Designer, Olumide Sajowa">
+    <title>Olumide Sajowa — Design & Product Delivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* =========================================
+           HOME PAGE — WARM OFF-WHITE BACKGROUND
+           Linen/Canvas Texture + Architectural Grid
+           ========================================= */
+        
+        body {
+            background-color: #FAF9F7;
+            background-image: 
+                /* Subtle architectural grid — 2% opacity */
+                linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
+                /* Linen/canvas texture — hand-drawn feel */
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 40px 40px, 40px 40px, 100px 100px;
+            color: #1E1E1E;
+            
+            /* Updated color system — architectural palette */
+            --primary: #2A4B7C;      /* Deep naval blue — authority, clarity */
+            --secondary: #5F6B7A;    /* Slate — structural, neutral */
+            --accent: #8B5F4C;       /* Warm leather — craft, humanity */
+            --dark: #1E1E1E;         /* Almost black — high contrast for readability */
+            --light: #FAF9F7;        /* Warm off-white — foundation */
+            --gray: #5B5B5B;         /* Medium gray — reduced emphasis */
+            --border: rgba(0,0,0,0.08);
+            --gradient: linear-gradient(135deg, #2A4B7C 0%, #4A6A8C 50%, #8B5F4C 100%);
+        }
+
+        /* ---------- Navigation — Light Mode Adaptation ---------- */
+        .nav-backdrop {
+            background: rgba(250, 249, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .nav.scrolled .nav-backdrop {
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        }
+
+        .nav-link {
+            color: var(--gray);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--dark);
+        }
+
+        .nav-link::after {
+            background: var(--gradient);
+        }
+
+        .nav-logo {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            color: var(--dark);
+        }
+
+        .nav-toggle svg {
+            stroke: var(--dark);
+        }
+
+        /* ---------- Hero — New Copy, Light Background ---------- */
+        .hero {
+            min-height: calc(100vh - var(--nav-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 2rem 6rem;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .hero-title {
+            color: var(--dark);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-line {
+            display: block;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .btn-primary {
+            background: var(--dark);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42, 75, 124, 0.15);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0,0,0,0.02);
+            border-color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- Floating Orbs — Subtle, Architectural ---------- */
+        .hero-visual {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            mix-blend-mode: multiply;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            top: -100px;
+            right: -100px;
+            opacity: 0.08;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent);
+            bottom: -100px;
+            left: -100px;
+            opacity: 0.06;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: var(--secondary);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.04;
+        }
+
+        /* ---------- Work Section — Light Mode ---------- */
+        .work-section {
+            background: transparent;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+        }
+
+        .work-title {
+            color: var(--dark);
+        }
+
+        .work-category {
+            color: var(--gray);
+        }
+
+        .work-overlay {
+            background: rgba(42, 75, 124, 0.95);
+        }
+
+        /* ---------- CTA Section — Light Mode ---------- */
+        .cta-section {
+            background: rgba(42, 75, 124, 0.02);
+            border-top: 1px solid rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .cta-title {
+            color: var(--dark);
+        }
+
+        .cta-text {
+            color: var(--gray);
+        }
+
+        /* ---------- Footer — Light Mode ---------- */
+        .footer {
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-content p,
+        .footer-links a {
+            color: var(--gray);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ---------- Modal — Light Mode ---------- */
+        .modal-overlay {
+            background: rgba(250, 249, 247, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal {
+            background: white;
+            box-shadow: -20px 0 40px rgba(0,0,0,0.03);
+        }
+
+        .modal-close {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--dark);
+        }
+
+        .modal-close:hover {
+            background: rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            color: var(--dark);
+        }
+
+        .modal-label {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .modal-meta {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .meta-item h4 {
+            color: var(--gray);
+        }
+
+        .meta-item p {
+            color: var(--dark);
+        }
+
+        .modal-section h3 {
+            color: var(--dark);
+        }
+
+        .modal-section h3::after {
+            background: var(--gradient);
+        }
+
+        .modal-section p {
+            color: var(--gray);
+        }
+
+        .modal-section p strong {
+            color: var(--dark);
+        }
+
+        .decision-card {
+            background: rgba(255,255,255,0.8);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .decision-card:hover {
+            border-color: rgba(42, 75, 124, 0.2);
+            background: white;
+        }
+
+        .decision-icon {
+            background: rgba(42, 75, 124, 0.05);
+            color: var(--primary);
+        }
+
+        .decision-title {
+            color: var(--dark);
+        }
+
+        .decision-desc {
+            color: var(--gray);
+        }
+
+        .team-tag {
+            background: rgba(42, 75, 124, 0.05);
+            border: 1px solid rgba(42, 75, 124, 0.1);
+            color: var(--primary);
+        }
+
+        .learnings-list li {
+            color: var(--gray);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .learnings-list li::before {
+            color: var(--primary);
+        }
+
+        /* ---------- Remove Dark Mode Elements ---------- */
+        .noise-overlay {
+            display: none;
+        }
+
+        /* ---------- Mobile Navigation — Light Mode ---------- */
+        @media (max-width: 768px) {
+            .nav-links {
+                background: rgba(250, 249, 247, 0.98);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                border-left: 1px solid rgba(0,0,0,0.04);
+            }
+            
+            .nav-links.active {
+                box-shadow: -10px 0 30px rgba(0,0,0,0.02);
+            }
+        }
+
+        /* ---------- Page Transition ---------- */
+        .page-transition {
+            background: #FAF9F7;
+        }
+
+        /* ---------- Logo — Dark Version for Light BG ---------- */
+        .logo-image {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.02));
+        }
+
+        .nav-logo:hover .logo-orb {
+            filter: drop-shadow(0 4px 12px rgba(42, 75, 124, 0.15));
+        }
+
+        /* ---------- Utility ---------- */
+        .gradient-text-secondary {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-transition"></div>
+
+    <!-- Hunter.io Style Navigation — Preserved -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-backdrop"></div>
+            <div class="nav-content">
+                <a href="index.html" class="nav-logo" id="logoContainer">
+                    <div class="logo-orb">
+                        <img src="./images/logo/OS logo 1.png" alt="OS Logo" class="logo-image">
+                        <div class="logo-glow"></div>
+                        <div class="logo-sparkle"></div>
+                    </div>
+                </a>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link active">Work</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section — Updated Copy -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-line">I don't just</span>
+                <span class="hero-line">design products.</span>
+                <span class="hero-line gradient-text">I ship them.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Complete digital solutions from brand and interface to fully working, deployed applications. One partner. Real outcomes. No back-and-forth.
+            </p>
+            <!-- <div class="hero-cta">
+                <a href="#work" class="btn-primary">Explore work</a>
+                <a href="contact.html" class="btn-secondary">Start a conversation</a>
+            </div> -->
+        </div>
+        <div class="hero-visual">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Work Section — Preserved, Projects Loaded via JS -->
+    <section id="work" class="work-section">
+        <div class="section-header">
+            <h2 class="section-title">Selected projects</h2>
+            <p class="section-subtitle">
+                Brand identities, digital products, and full stack applications each built to ship, not to present.
+            </p>
+        </div>
+
+        <div class="work-grid">
+            <!-- Projects dynamically injected by script.js -->
+        </div>
+    </section>
+
+    <!-- CTA Section — Updated Voice -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Bring clarity to your product.</h2>
+            <p class="cta-text">
+                If you're building or refining a digital product and need clear thinking, strong execution, and a finished outcome, this is the right place to start.
+            </p>
+            <div style="margin-top: 2.5rem;">
+                <a href="contact.html" class="btn-primary">Start a conversation</a>
+                <a href="about.html" class="btn-secondary" style="margin-left: 1rem;">About</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2027 Olumide Sajowa — Design & Product Delivery</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/olumidesajowa" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://twitter.com/olumidesajowa" target="_blank" rel="noopener">Twitter</a>
+                <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal — Preserved -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Content injected via script.js -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
