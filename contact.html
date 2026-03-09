@@ -349,8 +349,8 @@
               Fill in the details below and I'll get back to you within 2 business days.
             </p>
 
-            <!-- Web3Forms access key — replace with yours from web3forms.com -->
-            <input type="hidden" name="access_key" value="9c919bcd-6a42-4ae0-a606-fd124ec7085dY">
+            <!-- Web3Forms access key — paste yours from web3forms.com (format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) -->
+            <input type="hidden" name="access_key" id="accessKey" value="9c919bcd-6a42-4ae0-a606-fd124ec7085d">
 
             <!-- Web3Forms: subject line in your inbox -->
             <input type="hidden" name="subject" value="New message from portfolio — Olumide Sajowa">
@@ -441,11 +441,11 @@
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2026 Olumide Sajowa. All rights reserved.</p>
-      <div class="footer-links">
+      <!-- <div class="footer-links">
         <a href="https://linkedin.com/in/olumidesajowa" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://twitter.com/olumidesajowa" target="_blank" rel="noopener">Twitter</a>
         <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
-      </div>
+      </div> -->
     </div>
   </footer>
 
@@ -491,6 +491,26 @@
       </div>
     </div>
   </div>
+
+  <!--
+    script.js references elements that exist on other pages (e.g. #success, #hero).
+    This patch creates invisible stubs for any missing IDs before script.js runs,
+    preventing the "can't access property style, X is null" crash on the contact page.
+  -->
+  <script>
+    (function() {
+      ['success','error','hero','hero-title','hero-subtitle','hero-cta',
+       'projects','project-grid','loader'].forEach(function(id) {
+        if (!document.getElementById(id)) {
+          var s = document.createElement('div');
+          s.id = id;
+          s.setAttribute('aria-hidden','true');
+          s.style.cssText = 'display:none!important;position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;';
+          document.body.appendChild(s);
+        }
+      });
+    })();
+  </script>
 
   <script src="script.js"></script>
   <script>
@@ -583,9 +603,29 @@
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
 
+    // ── UUID format check ─────────────────────────
+    var UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+    function getAccessKey() {
+      var el = document.getElementById('accessKey');
+      return el ? el.value.trim() : '';
+    }
+
     // ── Submit handler ─────────────────────────────
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
+
+      // Catch placeholder / malformed access key immediately
+      var key = getAccessKey();
+      if (!key || key === 'YOUR_WEB3FORMS_ACCESS_KEY' || !UUID_RE.test(key)) {
+        document.getElementById('errorMsg').innerHTML =
+          '<strong>Configuration error:</strong> the Web3Forms access key is missing or invalid. ' +
+          'Go to <a href="https://web3forms.com" target="_blank" style="color:#2A4B7C;">web3forms.com</a>, ' +
+          'copy your UUID key, and paste it into the access_key hidden input in contact.html.';
+        errorBanner.classList.add('visible');
+        errorBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
 
       if (!validate()) {
         var first = form.querySelector('.form-input.invalid, .form-textarea.invalid');
