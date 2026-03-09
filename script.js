@@ -333,7 +333,6 @@ WCAG 2.1 AA. Keyboard navigation with ⌘K search shortcut. Reduced-motion respe
       }
     ],
 
-    // update path when video is ready
     video: "./videos/Weathe.mp4",
 
     outcomes: `- Lighthouse 95+ across performance, accessibility, best practices, and SEO
@@ -401,9 +400,6 @@ Stateless frontend — no backend, no database, no authentication required for c
         description: "Full analysis completes client-side in under 10 seconds immediate value from first interaction, no loading state required."
       }
     ],
-
-    // update path when video is ready
-    // video: "./videos/ux-debt-detector-demo.mp4",
 
     outcomes: `- Full heuristic analysis pipeline running client-side in under 10 seconds
 - Severity-weighted scoring across 10 usability principle categories
@@ -475,7 +471,6 @@ CSS variables · SCSS maps · Tailwind config · JSON · W3C Design Tokens · Fi
       }
     ],
 
-    // update path when video is ready
     video: "./videos/Colour.mp4",
 
     outcomes: `- Complete colour mathematics engine in vanilla JavaScript no library dependencies
@@ -549,7 +544,6 @@ Quantity parser preserving units through fractional and decimal representations.
       }
     ],
 
-    // update path when video is ready
     video: "./videos/Reipes.mp4",
 
     outcomes: `- Lighthouse 90+ across performance, accessibility, and PWA criteria
@@ -619,7 +613,6 @@ Real-time consumption tracking · Predictive usage forecasting · Appliance brea
       }
     ],
 
-    // update path when video is ready
     video: "./videos/Cleaenn.mp4",
 
     outcomes: `- AI recommendation engine producing device-specific, tariff-aware guidance
@@ -690,9 +683,6 @@ Analysis context and scoring weights shift by declared product category: E-Comme
         description: "Analysis context and scoring weights are adjusted per declared product category conversion hierarchy for a landing page is a different evaluation problem than data density for a dashboard."
       }
     ],
-
-    // update path when video is ready
-    // video: "./videos/omnicraft-demo.mp4",
 
     outcomes: `- 5 AI services integrated in a single fault-tolerant orchestration pipeline
 - Promise.allSettled architecture maintaining analysis continuity under partial provider failure
@@ -854,19 +844,12 @@ const modalOverlay   = document.getElementById('modalOverlay');
 const modalClose     = document.getElementById('modalClose');
 const modalContent   = document.getElementById('modalContent');
 
-// ── Navigation scroll behaviour ─────────────────────────────
-let lastScrollTop = 0;
-let scrollTimeout;
-
+// ── Navigation — always sticky, toggle .scrolled class only ──
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const dir = scrollTop > lastScrollTop ? 'down' : 'up';
-  lastScrollTop = scrollTop;
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    nav.style.transform = (dir === 'down' && scrollTop > 100) ? 'translateY(-100%)' : 'translateY(0)';
-    nav.classList.toggle('scrolled', scrollTop > 50);
-  }, 10);
+  // Always visible regardless of scroll direction
+  nav.style.transform = 'translateY(0)';
+  nav.classList.toggle('scrolled', scrollTop > 50);
 });
 
 // ── Mobile menu ──────────────────────────────────────────────
@@ -991,7 +974,6 @@ function initializeAnimations() {
 // MODAL
 // ============================================================
 
-// Middle slot: video player if project.video is set, else image[1]
 function renderMediaBlock(project) {
   if (project.video) {
     return `

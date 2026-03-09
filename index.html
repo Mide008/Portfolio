@@ -8,36 +8,27 @@
     <title>Olumide Sajowa — Design & Product Delivery</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* =========================================
-           HOME PAGE — WARM OFF-WHITE BACKGROUND
-           Linen/Canvas Texture + Architectural Grid
-           ========================================= */
-        
         body {
             background-color: #FAF9F7;
             background-image: 
-                /* Subtle architectural grid — 2% opacity */
                 linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
-                /* Linen/canvas texture — hand-drawn feel */
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
             background-size: 40px 40px, 40px 40px, 100px 100px;
             color: #1E1E1E;
-            
-            /* Updated color system — architectural palette */
-            --primary: #2A4B7C;      /* Deep naval blue — authority, clarity */
-            --secondary: #5F6B7A;    /* Slate — structural, neutral */
-            --accent: #8B5F4C;       /* Warm leather — craft, humanity */
-            --dark: #1E1E1E;         /* Almost black — high contrast for readability */
-            --light: #FAF9F7;        /* Warm off-white — foundation */
-            --gray: #5B5B5B;         /* Medium gray — reduced emphasis */
+            --primary: #2A4B7C;
+            --secondary: #5F6B7A;
+            --accent: #8B5F4C;
+            --dark: #1E1E1E;
+            --light: #FAF9F7;
+            --gray: #5B5B5B;
             --border: rgba(0,0,0,0.08);
             --gradient: linear-gradient(135deg, #2A4B7C 0%, #4A6A8C 50%, #8B5F4C 100%);
         }
 
-        /* ---------- Navigation — Light Mode Adaptation ---------- */
+        /* ── Nav — matches contact.html exactly ── */
         .nav-backdrop {
-            background: rgba(250, 249, 247, 0.85);
+            background: rgba(250, 249, 247, 0.88);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(0,0,0,0.05);
@@ -45,7 +36,7 @@
         }
 
         .nav.scrolled .nav-backdrop {
-            background: rgba(250, 249, 247, 0.95);
+            background: rgba(250, 249, 247, 0.96);
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             box-shadow: 0 4px 30px rgba(0,0,0,0.03);
@@ -76,7 +67,7 @@
             stroke: var(--dark);
         }
 
-        /* ---------- Hero — New Copy, Light Background ---------- */
+        /* ---------- Hero ---------- */
         .hero {
             min-height: calc(100vh - var(--nav-height));
             display: flex;
@@ -141,7 +132,6 @@
             transform: translateY(-2px);
         }
 
-        /* ---------- Floating Orbs — Subtle, Architectural ---------- */
         .hero-visual {
             position: absolute;
             width: 100%;
@@ -189,63 +179,31 @@
             opacity: 0.04;
         }
 
-        /* ---------- Work Section — Light Mode ---------- */
         .work-section {
             background: transparent;
             position: relative;
             z-index: 10;
         }
 
-        .section-title {
-            color: var(--dark);
-        }
+        .section-title { color: var(--dark); }
+        .section-subtitle { color: var(--gray); }
+        .work-title { color: var(--dark); }
+        .work-category { color: var(--gray); }
+        .work-overlay { background: rgba(42, 75, 124, 0.95); }
 
-        .section-subtitle {
-            color: var(--gray);
-        }
-
-        .work-title {
-            color: var(--dark);
-        }
-
-        .work-category {
-            color: var(--gray);
-        }
-
-        .work-overlay {
-            background: rgba(42, 75, 124, 0.95);
-        }
-
-        /* ---------- CTA Section — Light Mode ---------- */
         .cta-section {
             background: rgba(42, 75, 124, 0.02);
             border-top: 1px solid rgba(0,0,0,0.04);
             border-bottom: 1px solid rgba(0,0,0,0.04);
         }
 
-        .cta-title {
-            color: var(--dark);
-        }
+        .cta-title { color: var(--dark); }
+        .cta-text { color: var(--gray); }
 
-        .cta-text {
-            color: var(--gray);
-        }
+        .footer { border-top: 1px solid rgba(0,0,0,0.05); }
+        .footer-content p, .footer-links a { color: var(--gray); }
+        .footer-links a:hover { color: var(--primary); }
 
-        /* ---------- Footer — Light Mode ---------- */
-        .footer {
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .footer-content p,
-        .footer-links a {
-            color: var(--gray);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* ---------- Modal — Light Mode ---------- */
         .modal-overlay {
             background: rgba(250, 249, 247, 0.95);
             backdrop-filter: blur(10px);
@@ -268,10 +226,7 @@
             transform: rotate(90deg);
         }
 
-        .modal-title {
-            color: var(--dark);
-        }
-
+        .modal-title { color: var(--dark); }
         .modal-label {
             background: rgba(42, 75, 124, 0.05);
             border: 1px solid rgba(42, 75, 124, 0.1);
@@ -283,29 +238,13 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .meta-item h4 {
-            color: var(--gray);
-        }
+        .meta-item h4 { color: var(--gray); }
+        .meta-item p { color: var(--dark); }
 
-        .meta-item p {
-            color: var(--dark);
-        }
-
-        .modal-section h3 {
-            color: var(--dark);
-        }
-
-        .modal-section h3::after {
-            background: var(--gradient);
-        }
-
-        .modal-section p {
-            color: var(--gray);
-        }
-
-        .modal-section p strong {
-            color: var(--dark);
-        }
+        .modal-section h3 { color: var(--dark); }
+        .modal-section h3::after { background: var(--gradient); }
+        .modal-section p { color: var(--gray); }
+        .modal-section p strong { color: var(--dark); }
 
         .decision-card {
             background: rgba(255,255,255,0.8);
@@ -322,13 +261,8 @@
             color: var(--primary);
         }
 
-        .decision-title {
-            color: var(--dark);
-        }
-
-        .decision-desc {
-            color: var(--gray);
-        }
+        .decision-title { color: var(--dark); }
+        .decision-desc { color: var(--gray); }
 
         .team-tag {
             background: rgba(42, 75, 124, 0.05);
@@ -341,16 +275,10 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .learnings-list li::before {
-            color: var(--primary);
-        }
+        .learnings-list li::before { color: var(--primary); }
 
-        /* ---------- Remove Dark Mode Elements ---------- */
-        .noise-overlay {
-            display: none;
-        }
+        .noise-overlay { display: none; }
 
-        /* ---------- Mobile Navigation — Light Mode ---------- */
         @media (max-width: 768px) {
             .nav-links {
                 background: rgba(250, 249, 247, 0.98);
@@ -364,12 +292,8 @@
             }
         }
 
-        /* ---------- Page Transition ---------- */
-        .page-transition {
-            background: #FAF9F7;
-        }
+        .page-transition { background: #FAF9F7; }
 
-        /* ---------- Logo — Dark Version for Light BG ---------- */
         .logo-image {
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.02));
         }
@@ -378,7 +302,6 @@
             filter: drop-shadow(0 4px 12px rgba(42, 75, 124, 0.15));
         }
 
-        /* ---------- Utility ---------- */
         .gradient-text-secondary {
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -390,7 +313,6 @@
 <body>
     <div class="page-transition"></div>
 
-    <!-- Hunter.io Style Navigation — Preserved -->
     <nav class="nav">
         <div class="nav-container">
             <div class="nav-backdrop"></div>
@@ -418,7 +340,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section — Updated Copy -->
     <section class="hero">
         <div class="hero-content">
             <h1 class="hero-title">
@@ -429,10 +350,6 @@
             <p class="hero-subtitle">
                 Complete digital solutions from brand and interface to fully working, deployed applications. One partner. Real outcomes. No back-and-forth.
             </p>
-            <!-- <div class="hero-cta">
-                <a href="#work" class="btn-primary">Explore work</a>
-                <a href="contact.html" class="btn-secondary">Start a conversation</a>
-            </div> -->
         </div>
         <div class="hero-visual">
             <div class="floating-orb orb-1"></div>
@@ -441,7 +358,6 @@
         </div>
     </section>
 
-    <!-- Work Section — Preserved, Projects Loaded via JS -->
     <section id="work" class="work-section">
         <div class="section-header">
             <h2 class="section-title">Selected projects</h2>
@@ -455,7 +371,6 @@
         </div>
     </section>
 
-    <!-- CTA Section — Updated Voice -->
     <section class="cta-section">
         <div class="cta-container">
             <h2 class="cta-title">Bring clarity to your product.</h2>
@@ -469,19 +384,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p>© 2026 Olumide Sajowa — Design & Product Delivery</p>
-            <!-- <div class="footer-links">
-                <a href="https://linkedin.com/in/olumidesajowa" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://twitter.com/olumidesajowa" target="_blank" rel="noopener">Twitter</a>
-                <a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
-            </div> -->
         </div>
     </footer>
 
-    <!-- Modal — Preserved -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modal">
             <button class="modal-close" id="modalClose">&times;</button>
@@ -494,4 +402,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
